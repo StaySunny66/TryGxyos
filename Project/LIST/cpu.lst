@@ -1,0 +1,269 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000 E000ED04 
+                       NVIC_INT_CTRL
+                               EQU              0xE000ED04  ; Interrupt control
+                                                             state register.
+    2 00000000 E000ED22 
+                       NVIC_SYSPRI14
+                               EQU              0xE000ED22  ; System priority r
+                                                            egister (priority 1
+                                                            4).
+    3 00000000 000000FF 
+                       NVIC_PENDSV_PRI
+                               EQU              0xFF        ; PendSV priority v
+                                                            alue (lowest).
+    4 00000000 10000000 
+                       NVIC_PENDSVSET
+                               EQU              0x10000000  ; Value to trigger 
+                                                            PendSV exception.
+    5 00000000         
+    6 00000000         
+    7 00000000         ;ª„±‡ø™ º∏Ò Ω
+    8 00000000         ;AREA  C¡™¥˙¬Î∂À
+    9 00000000         ;±Ì æ¥˙¬Î
+   10 00000000         ;÷ª∂¡ Ù–‘
+   11 00000000         
+   12 00000000         
+   13 00000000                 AREA             |.text|, CODE , READONLY
+   14 00000000         
+   15 00000000                 EXPORT           PENDSV
+   16 00000000                 EXPORT           INITPendSv
+   17 00000000                 EXPORT           PendSV_Handler
+   18 00000000         
+   19 00000000         
+   20 00000000                 EXTERN           now_stack_p
+   21 00000000                 EXTERN           next_stack_p
+   22 00000000         
+   23 00000000         
+   24 00000000         
+   25 00000000         INITPendSv
+   26 00000000         
+   27 00000000         ;…Ë÷√ PendSv ÷–∂œ”≈œ»º∂∞°
+   28 00000000 4812            LDR              R0, =NVIC_SYSPRI14
+   29 00000002 F04F 01FF       LDR              R1, =NVIC_PENDSV_PRI ;
+   30 00000006 7001            STRB             R1, [R0]
+   31 00000008 4770            BX               LR
+   32 0000000A         
+   33 0000000A         
+   34 0000000A         
+   35 0000000A         
+   36 0000000A         
+   37 0000000A         PendSV_Handler
+   38 0000000A         
+   39 0000000A B672            CPSID            I           ; πÿ±’◊‹÷–∂œ
+   40 0000000C         
+   41 0000000C F3EF 8009       MRS              R0, PSP     ; Ω´◊¥Ã¨ºƒ¥Ê∆˜µƒƒ⁄»
+                                                            ›¥´ÀÕ÷¡Õ®”√ºƒ¥Ê∆˜°£
+                                                              ≈–∂œ PSP  «∑Ò « 0
+                                                            
+   42 00000010 B128            CBZ              R0, OS_CPU_PendSVHandler_nosave
+ 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            ; ≈–∂œ R0 (PSP)  «∑
+                                                            Ò  « 0 »Áπ˚ «0 µ⁄“ª
+                                                            ¥Œ»ŒŒÒ≤ª”√Ω¯––œ÷≥°±
+                                                            £¥Ê ÷±Ω”Ã¯◊™µΩ nosa
+                                                            ve
+   43 00000012         
+   44 00000012 3820            SUBS             R0, R0, #0x20 ; ±£¥Êµ±«∞»ŒŒÒµƒC
+                                                            PUœ÷≥°
+   45 00000014 E880 0FF0       STM              R0, {R4-R11}
+   46 00000018         
+   47 00000018 490D            LDR              R1, =now_stack_p ; ªÒµ√µ±«∞‘À––
+                                                            µƒ»ŒŒÒ±£¥Êµƒ ∂—’ªµÿ
+                                                            ÷∑ µƒ ±£¥Êµÿ÷∑
+   48 0000001A 6809            LDR              R1, [R1]
+   49 0000001C 6008            STR              R0, [R1]    ; R0 is SP of proce
+                                                            ss being switched o
+                                                            ut
+   50 0000001E         
+   51 0000001E         ; µΩ¥À¥¶ À˘”–µƒcpu œ÷≥° “—æ≠±£¥ÊÕÍ≥…
+   52 0000001E         OS_CPU_PendSVHandler_nosave
+   53 0000001E         
+   54 0000001E 480C            LDR              R0, =now_stack_p ; ’‚∏ˆ”¶∏√±£¥Ê
+                                                            ◊≈ µ±«∞»ŒŒÒµƒ c ÷–µ
+                                                            ƒ∂—’ª÷∏’Î
+   55 00000020 490C            LDR              R1, =next_stack_p ; ªÒ»°¡À ∂—’ª
+                                                            ÷∏’Î µƒ ¥Ê¥¢ µÿ÷∑
+   56 00000022 6809            LDR              R1,[R1]
+   57 00000024 6001            STR              R1,[R0]     ; now_stack_p ”¶∏√¥
+                                                            Ê ∂—’ª÷∏’Îµƒ µƒ¥Ê¥¢
+                                                             µÿ÷∑   OK 
+   58 00000026 6809            LDR              R1,[R1]
+   59 00000028         ;LDR     R2, [R1]       ; œ÷‘⁄  R2  « ∂—’ª÷∏’Î ¡À
+   60 00000028         
+   61 00000028         
+   62 00000028         ; R0 is new process SP; SP = OSTCBHighRdy->OSTCBStkPtr;
+   63 00000028 E891 0FF0       LDM              R1, {R4-R11} ; Restore r4-11 fr
+                                                            om new process stac
+                                                            k
+   64 0000002C 3120            ADDS             R1, R1, #0x20
+   65 0000002E         
+   66 0000002E         ;R0 ¥Êµƒµÿ÷∑ « œ÷‘⁄ «∂—’ªµÿ÷∑  ¥Ê¥¢ø’º‰  
+   67 0000002E         
+   68 0000002E 6800            LDR              R0, [R0]
+   69 00000030 6001            STR              R1, [R0]
+   70 00000032         ;  ∫√¡À œ÷‘⁄R0 ¥Ê¥¢µƒ  «’Ê’˝µƒ∂—’ª µÿ÷∑¡À 
+   71 00000032         
+   72 00000032         ;       
+   73 00000032 F381 8809       MSR              PSP, R1     ; Load PSP with new
+                                                             process SP
+   74 00000036 F04E 0E04       ORR              LR , LR, #0x04 ; Ensure excepti
+                                                            on return uses proc
+                                                            ess stack
+   75 0000003A B662            CPSIE            I
+   76 0000003C 4770            BX               LR          ; Exception return 
+                                                            will restore remain
+                                                            ing context
+   77 0000003E         
+   78 0000003E         
+   79 0000003E         PENDSV
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   80 0000003E         ;¥•∑¢PendSv“Ï≥£
+   81 0000003E         
+   82 0000003E 4806            LDR              R0, =NVIC_INT_CTRL
+   83 00000040 F04F 5180       LDR              R1, =NVIC_PENDSVSET
+   84 00000044 6001            STR              R1, [R0]
+   85 00000046 4770            BX               LR
+   86 00000048         
+   87 00000048 B662            CPSIE            I
+   88 0000004A         
+   89 0000004A         
+   90 0000004A                 END
+              00 00 E000ED22 
+              00000000 
+              00000000 
+              E000ED04 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\obj\cpu.d -o.\obj\cpu.o -IC:\Users\gxyos\Desktop\OS\STM32_Gxy
+os\GXYOS\Project\RTE -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\K
+eil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Incl
+ude --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__
+UVISION_VERSION SETA 521" --predefine="_RTE_ SETA 1" --predefine="STM32F407xx S
+ETA 1" --list=.\list\cpu.lst cpu.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 13 in file cpu.s
+   Uses
+      None
+Comment: .text unused
+INITPendSv 00000000
+
+Symbol: INITPendSv
+   Definitions
+      At line 25 in file cpu.s
+   Uses
+      At line 16 in file cpu.s
+Comment: INITPendSv used once
+OS_CPU_PendSVHandler_nosave 0000001E
+
+Symbol: OS_CPU_PendSVHandler_nosave
+   Definitions
+      At line 52 in file cpu.s
+   Uses
+      At line 42 in file cpu.s
+Comment: OS_CPU_PendSVHandler_nosave used once
+PENDSV 0000003E
+
+Symbol: PENDSV
+   Definitions
+      At line 79 in file cpu.s
+   Uses
+      At line 15 in file cpu.s
+Comment: PENDSV used once
+PendSV_Handler 0000000A
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 37 in file cpu.s
+   Uses
+      At line 17 in file cpu.s
+Comment: PendSV_Handler used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+NVIC_INT_CTRL E000ED04
+
+Symbol: NVIC_INT_CTRL
+   Definitions
+      At line 1 in file cpu.s
+   Uses
+      At line 82 in file cpu.s
+Comment: NVIC_INT_CTRL used once
+NVIC_PENDSVSET 10000000
+
+Symbol: NVIC_PENDSVSET
+   Definitions
+      At line 4 in file cpu.s
+   Uses
+      At line 83 in file cpu.s
+Comment: NVIC_PENDSVSET used once
+NVIC_PENDSV_PRI 000000FF
+
+Symbol: NVIC_PENDSV_PRI
+   Definitions
+      At line 3 in file cpu.s
+   Uses
+      At line 29 in file cpu.s
+Comment: NVIC_PENDSV_PRI used once
+NVIC_SYSPRI14 E000ED22
+
+Symbol: NVIC_SYSPRI14
+   Definitions
+      At line 2 in file cpu.s
+   Uses
+      At line 28 in file cpu.s
+Comment: NVIC_SYSPRI14 used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+next_stack_p 00000000
+
+Symbol: next_stack_p
+   Definitions
+      At line 21 in file cpu.s
+   Uses
+      At line 55 in file cpu.s
+Comment: next_stack_p used once
+now_stack_p 00000000
+
+Symbol: now_stack_p
+   Definitions
+      At line 20 in file cpu.s
+   Uses
+      At line 47 in file cpu.s
+      At line 54 in file cpu.s
+
+2 symbols
+349 symbols in table

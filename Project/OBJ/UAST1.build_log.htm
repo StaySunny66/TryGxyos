@@ -1,0 +1,211 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.21.1.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: gxyos gxyos, gxyos, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.21a
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 3 (build 300)
+Assembler:       Armasm.exe V5.06 update 3 (build 300)
+Linker/Locator:  ArmLink.exe V5.06 update 3 (build 300)
+Library Manager: ArmAr.exe V5.06 update 3 (build 300)
+Hex Converter:   FromElf.exe V5.06 update 3 (build 300)
+CPU DLL:         SARMCM3.DLL V5.21a
+Dialog DLL:      DCM.DLL V1.13.8.0
+Target DLL:      CMSIS_AGDI.dll V1.26.5.0
+Dialog DLL:      TCM.DLL V1.14.14.0
+ 
+<h2>Project:</h2>
+C:\Users\gxyos\Desktop\OS\STM32_Gxyos\GXYOS\Project\UAST1.uvprojx
+Project File Date:  05/05/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+assembling startup_stm32f40_41xxx.s...
+compiling main.c...
+..\Gxyos\OS_LIB\GxyTask.h(71): warning:  #1295-D: Deprecated declaration OS_Task_init - give arg types
+  
+XYOS_ERR OS_Task_init();
+..\Gxyos\OS_LIB\GxyTask.h(72): warning:  #1295-D: Deprecated declaration OS_CHICK - give arg types
+  
+XYOS_ERR OS_CHICK();
+..\Gxyos\OS_LIB\GxyTask.h(79): warning:  #1295-D: Deprecated declaration OS_next_run - give arg types
+  
+XYOS_VOID_POI OS_next_run();
+..\Gxyos\OS_LIB\GxyTask.h(80): warning:  #1295-D: Deprecated declaration GET_RUNNING_MESSAGE - give arg types
+  void GET_RUNNING_MESSAGE();
+..\Gxyos\OS_LIB\GxyTask.h(81): warning:  #1295-D: Deprecated declaration OS_TASK_NUM_GET - give arg types
+  
+XYOS_U32 OS_TASK_NUM_GET();
+..\Gxyos\OS_LIB\GxyosTime.h(10): warning:  #1295-D: Deprecated declaration OS_Time_init - give arg types
+  void OS_Time_init();
+..\Gxyos\OS_LIB\GxyosTime.h(11): warning:  #1295-D: Deprecated declaration OS_Time_Handle - give arg types
+  void OS_Time_Handle();
+..\Gxyos\OS_LIB\GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_LIB\Gxyos.h(55): warning:  #1295-D: Deprecated declaration GxyosTick - give arg types
+  void GxyosTick();
+..\Gxyos\OS_LIB\Gxyos.h(56): warning:  #1295-D: Deprecated declaration GXYOSStart - give arg types
+  void GXYOSStart();
+..\Main\main.c(61): warning:  #111-D: statement is unreachable
+      return 0;
+..\Main\main.c: 11 warnings, 0 errors
+compiling misc.c...
+compiling led.c...
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_gpio.c...
+compiling usart1.c...
+..\USER\usart1\usart1.c(110): warning:  #550-D: variable "rec_data" was set but never used
+  	u8 rec_data;
+..\USER\usart1\usart1.c: 1 warning, 0 errors
+compiling system_stm32f4xx.c...
+compiling GxyosEvent.c...
+compiling GxyosTime.c...
+..\Gxyos\OS_LIB\GxyTask.h(71): warning:  #1295-D: Deprecated declaration OS_Task_init - give arg types
+  
+XYOS_ERR OS_Task_init();
+..\Gxyos\OS_LIB\GxyTask.h(72): warning:  #1295-D: Deprecated declaration OS_CHICK - give arg types
+  
+XYOS_ERR OS_CHICK();
+..\Gxyos\OS_LIB\GxyTask.h(79): warning:  #1295-D: Deprecated declaration OS_next_run - give arg types
+  
+XYOS_VOID_POI OS_next_run();
+..\Gxyos\OS_LIB\GxyTask.h(80): warning:  #1295-D: Deprecated declaration GET_RUNNING_MESSAGE - give arg types
+  void GET_RUNNING_MESSAGE();
+..\Gxyos\OS_LIB\GxyTask.h(81): warning:  #1295-D: Deprecated declaration OS_TASK_NUM_GET - give arg types
+  
+XYOS_U32 OS_TASK_NUM_GET();
+..\Gxyos\OS_LIB\GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_LIB\Gxyos.h(55): warning:  #1295-D: Deprecated declaration GxyosTick - give arg types
+  void GxyosTick();
+..\Gxyos\OS_LIB\Gxyos.h(56): warning:  #1295-D: Deprecated declaration GXYOSStart - give arg types
+  void GXYOSStart();
+..\Gxyos\OS_LIB\GxyosTime.h(10): warning:  #1295-D: Deprecated declaration OS_Time_init - give arg types
+  void OS_Time_init();
+..\Gxyos\OS_LIB\GxyosTime.h(11): warning:  #1295-D: Deprecated declaration OS_Time_Handle - give arg types
+  void OS_Time_Handle();
+..\Gxyos\OS_LIB\GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_LIB\GxyosTime.c: 11 warnings, 0 errors
+compiling Gxyos.c...
+..\Gxyos\OS_LIB\GxyTask.h(71): warning:  #1295-D: Deprecated declaration OS_Task_init - give arg types
+  
+XYOS_ERR OS_Task_init();
+..\Gxyos\OS_LIB\GxyTask.h(72): warning:  #1295-D: Deprecated declaration OS_CHICK - give arg types
+  
+XYOS_ERR OS_CHICK();
+..\Gxyos\OS_LIB\GxyTask.h(79): warning:  #1295-D: Deprecated declaration OS_next_run - give arg types
+  
+XYOS_VOID_POI OS_next_run();
+..\Gxyos\OS_LIB\GxyTask.h(80): warning:  #1295-D: Deprecated declaration GET_RUNNING_MESSAGE - give arg types
+  void GET_RUNNING_MESSAGE();
+..\Gxyos\OS_LIB\GxyTask.h(81): warning:  #1295-D: Deprecated declaration OS_TASK_NUM_GET - give arg types
+  
+XYOS_U32 OS_TASK_NUM_GET();
+..\Gxyos\OS_LIB\GxyosTime.h(10): warning:  #1295-D: Deprecated declaration OS_Time_init - give arg types
+  void OS_Time_init();
+..\Gxyos\OS_LIB\GxyosTime.h(11): warning:  #1295-D: Deprecated declaration OS_Time_Handle - give arg types
+  void OS_Time_Handle();
+..\Gxyos\OS_LIB\GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_LIB\Gxyos.h(55): warning:  #1295-D: Deprecated declaration GxyosTick - give arg types
+  void GxyosTick();
+..\Gxyos\OS_LIB\Gxyos.h(56): warning:  #1295-D: Deprecated declaration GXYOSStart - give arg types
+  void GXYOSStart();
+..\Gxyos\OS_LIB\Gxyos.c: 10 warnings, 0 errors
+compiling GxyTask.c...
+..\Gxyos\OS_LIB\GxyosTime.h(10): warning:  #1295-D: Deprecated declaration OS_Time_init - give arg types
+  void OS_Time_init();
+..\Gxyos\OS_LIB\GxyosTime.h(11): warning:  #1295-D: Deprecated declaration OS_Time_Handle - give arg types
+  void OS_Time_Handle();
+..\Gxyos\OS_LIB\GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_LIB\Gxyos.h(55): warning:  #1295-D: Deprecated declaration GxyosTick - give arg types
+  void GxyosTick();
+..\Gxyos\OS_LIB\Gxyos.h(56): warning:  #1295-D: Deprecated declaration GXYOSStart - give arg types
+  void GXYOSStart();
+..\Gxyos\OS_LIB\GxyTask.h(71): warning:  #1295-D: Deprecated declaration OS_Task_init - give arg types
+  
+XYOS_ERR OS_Task_init();
+..\Gxyos\OS_LIB\GxyTask.h(72): warning:  #1295-D: Deprecated declaration OS_CHICK - give arg types
+  
+XYOS_ERR OS_CHICK();
+..\Gxyos\OS_LIB\GxyTask.h(79): warning:  #1295-D: Deprecated declaration OS_next_run - give arg types
+  
+XYOS_VOID_POI OS_next_run();
+..\Gxyos\OS_LIB\GxyTask.h(80): warning:  #1295-D: Deprecated declaration GET_RUNNING_MESSAGE - give arg types
+  void GET_RUNNING_MESSAGE();
+..\Gxyos\OS_LIB\GxyTask.h(81): warning:  #1295-D: Deprecated declaration OS_TASK_NUM_GET - give arg types
+  
+XYOS_U32 OS_TASK_NUM_GET();
+..\Gxyos\OS_LIB\GxyTask.c(252): warning:  #186-D: pointless comparison of unsigned integer with zero
+      if(!(Task_Pri>=0&&Task_Pri<254)) return GXYOS_TASK_PRI_ERR;
+..\Gxyos\OS_LIB\GxyTask.c: 11 warnings, 0 errors
+assembling cpu.s...
+cpu.s(90): warning: A1581W: Added 2 bytes of padding at address 0x4a
+compiling common.c...
+compiling stm32f4xx_usart.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_fsmc.c...
+compiling os_porting.c...
+..\Gxyos\OS_PORT\../OS_LIB/GxyTask.h(71): warning:  #1295-D: Deprecated declaration OS_Task_init - give arg types
+  
+XYOS_ERR OS_Task_init();
+..\Gxyos\OS_PORT\../OS_LIB/GxyTask.h(72): warning:  #1295-D: Deprecated declaration OS_CHICK - give arg types
+  
+XYOS_ERR OS_CHICK();
+..\Gxyos\OS_PORT\../OS_LIB/GxyTask.h(79): warning:  #1295-D: Deprecated declaration OS_next_run - give arg types
+  
+XYOS_VOID_POI OS_next_run();
+..\Gxyos\OS_PORT\../OS_LIB/GxyTask.h(80): warning:  #1295-D: Deprecated declaration GET_RUNNING_MESSAGE - give arg types
+  void GET_RUNNING_MESSAGE();
+..\Gxyos\OS_PORT\../OS_LIB/GxyTask.h(81): warning:  #1295-D: Deprecated declaration OS_TASK_NUM_GET - give arg types
+  
+XYOS_U32 OS_TASK_NUM_GET();
+..\Gxyos\OS_PORT\../OS_LIB/GxyosTime.h(10): warning:  #1295-D: Deprecated declaration OS_Time_init - give arg types
+  void OS_Time_init();
+..\Gxyos\OS_PORT\../OS_LIB/GxyosTime.h(11): warning:  #1295-D: Deprecated declaration OS_Time_Handle - give arg types
+  void OS_Time_Handle();
+..\Gxyos\OS_PORT\../OS_LIB/GxyosTime.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Gxyos\OS_PORT\../OS_LIB/Gxyos.h(55): warning:  #1295-D: Deprecated declaration GxyosTick - give arg types
+  void GxyosTick();
+..\Gxyos\OS_PORT\../OS_LIB/Gxyos.h(56): warning:  #1295-D: Deprecated declaration GXYOSStart - give arg types
+  void GXYOSStart();
+..\Gxyos\OS_PORT\os_porting.c(44): warning:  #68-D: integer conversion resulted in a change of sign
+  	NVIC_InitStructure.NVIC_IRQChannel = SysTick_IRQn;      //ä¸?å?1ä¸?æ–?é€?é?
+..\Gxyos\OS_PORT\os_porting.c(90): warning:  #940-D: missing return statement at end of non-void function "OS_Str_Cpy"
+  }
+..\Gxyos\OS_PORT\os_porting.c: 12 warnings, 0 errors
+linking...
+Program Size: Code=10244 RO-data=424 RW-data=80 ZI-data=33264  
+FromELF: creating hex file...
+".\OBJ\UAST1.axf" - 0 Error(s), 57 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\gxyos\Desktop\OS\STM32_Gxyos\GXYOS\Project\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
